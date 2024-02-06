@@ -51,7 +51,7 @@ mode.addEventListener("click", function (e) {
 });
 
   document.getElementById("logout").addEventListener('click',function(){
-    location.href = "../index.html";
+    location.href = "./index.html";
   })
 // ! =============> Functions ===============>
 
