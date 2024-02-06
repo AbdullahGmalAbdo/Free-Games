@@ -137,5 +137,5 @@ function stopVideo(event) {
 }
 
 function showDetails(id) {
-   location.href = `../details.html?id=${id}`;
+   location.href = `./details.html?id=${id}`;
 }
