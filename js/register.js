@@ -17,15 +17,14 @@ if (localStorage.getItem("theme") != null) {
 
    document.querySelector("html").setAttribute("data-theme", themeData);
 }
-
-// * =============> Events ===============>
 formData.addEventListener("submit", function (e) {
-   e.preventDefault();
+  e.preventDefault();
 
-   if (isValid) {
-      setForm();
-   }
+  if (isValidData()) {  // Call isValidData before setForm
+     setForm();
+  }
 });
+
 inputs[0].addEventListener('input', function() {
 	vName(inputs[0]);
 });
@@ -83,7 +82,8 @@ async function registerForm(userData) {
    const response = await api.json();
 
    if (response.message === "success") {
-      location.href = "./index.html";
+      location.href = "../index.html";
+
    } else {
       document.getElementById("msg").innerHTML = response.errors?.email.message;
    }
@@ -92,24 +92,24 @@ async function registerForm(userData) {
 }
 
 //  =============> Validation ===============>
-function validationName(input) {
-   const regexStyle =
-      /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/;
+// function validationName(input) {
+//    const regexStyle =
+//       /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/;
 
-   if (regexStyle.test(input.value)) {
-      // el tmam
-      input.classList.add("is-valid");
-      input.classList.remove("is-invalid");
-      return true;
-   } else {
-      //el mesh tmam
+//    if (regexStyle.test(input.value)) {
+//       // el tmam
+//       input.classList.add("is-valid");
+//       input.classList.remove("is-invalid");
+//       return true;
+//    } else {
+//       //el mesh tmam
 
-      input.classList.add("is-invalid");
-      input.classList.remove("is-valid");
+//       input.classList.add("is-invalid");
+//       input.classList.remove("is-valid");
 
-      return false;
-   }
-}
+//       return false;
+//    }
+// }
 
 function vName(index) {
 	var regN = /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/;
@@ -162,10 +162,10 @@ function vAge() {
 }
 function isValidData() {
   if (vName(inputs[0]) && vName(inputs[1]) && vEmail() && vPass() && vAge()) {
-    isvaild = true;
+    isValid = true;
   } else {
-    isvaild = false;
+    isValid = false;
   }
-  return isvaild;
+  return isValid;
 }
 
